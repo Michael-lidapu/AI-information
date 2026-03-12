@@ -252,7 +252,98 @@
 <section class="chapter" id="ch4">
     <div class="chapter-label blue">CHAPTER 04</div>
     <h2>具体怎么做？</h2>
-    <p class="chapter-lead">以 Code Agent 为核心，万擎平台为底座，构建三层架构，同时逐一解决安全、权限、费用三大隐患。</p>
+    <p class="chapter-lead">统一建设有多种路径。下面先对比三种可选方案，再展开推荐方案的具体架构。</p>
+
+    <!-- 方案对比 -->
+    <div class="card">
+        <div class="card-title">三种建设方案对比</div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width:16%;">对比维度</th>
+                        <th>方案 A：维持现状</th>
+                        <th>方案 B：选一个现有产品统一</th>
+                        <th class="hl">方案 C：研发线新建统一平台</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>做法</strong></td>
+                        <td>各团队继续各做各的</td>
+                        <td>选 MarioClaw 或 LangBridge 等某个现有产品做公司标准</td>
+                        <td class="hl">研发线以 Code Agent + 万擎平台为基础，建设统一 Claw 平台</td>
+                    </tr>
+                    <tr>
+                        <td><strong>安全保障</strong></td>
+                        <td><span class="tag tag-r">各自把控，标准不一</span></td>
+                        <td><span class="tag tag-a">取决于选中产品</span></td>
+                        <td class="hl"><span class="tag tag-g">万擎平台统一保障</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>成本优化</strong></td>
+                        <td><span class="tag tag-r">无法统一优化</span></td>
+                        <td><span class="tag tag-a">有限优化</span></td>
+                        <td class="hl"><span class="tag tag-g">智能路由 + 集中管控</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>Agent 能力</strong></td>
+                        <td>各产品能力参差</td>
+                        <td>受限于选中产品的能力天花板</td>
+                        <td class="hl"><strong>Code Agent，能力无上限</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>扩展性</strong></td>
+                        <td>各自扩展，无法复用</td>
+                        <td>依赖 Skill 人工开发</td>
+                        <td class="hl"><strong>编程扩展，缺什么写代码补</strong></td>
+                    </tr>
+                    <tr>
+                        <td><strong>落地难度</strong></td>
+                        <td><span class="tag tag-g">无需改变</span></td>
+                        <td><span class="tag tag-a">需迁移 + 协调</span></td>
+                        <td><span class="tag tag-a">需建设 + 迁移</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong>长期风险</strong></td>
+                        <td><span class="tag tag-r">安全/成本不可控</span></td>
+                        <td><span class="tag tag-a">能力受限于选中产品</span></td>
+                        <td class="hl"><span class="tag tag-g">体系最完整，风险最低</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-head">💡 打个比方</div>
+        <p><strong>方案 A</strong>（维持现状）= 每个部门继续用自己的 Excel 记账，互不相通。<br>
+        <strong>方案 B</strong>（选一个产品统一）= 选某个部门的 Excel 模板让全公司用，但功能受限于这个模板。<br>
+        <strong>方案 C</strong>（研发线统一建设）= 上一套专业的 ERP 系统——功能全面、数据打通、安全可控。<br>
+        短期 C 投入大一点，但<strong>长期是唯一可持续的方案</strong>。</p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">为什么方案 B（选一个现有产品统一）不够好？</div>
+        <p style="font-size:14px;">表面上看，方案 B 更快——直接选一个已有产品推广全公司。但存在三个核心问题：</p>
+        <ul style="padding-left:20px; margin-top:10px; font-size:14px;">
+            <li><strong>能力天花板低</strong>：现有产品都是对话型 Agent，能力受限于已有 Skill，无法通过编程扩展</li>
+            <li><strong>底层不可控</strong>：没有万擎平台做底座，安全、成本优化、模型路由都需要额外建设</li>
+            <li><strong>扩展成本高</strong>：每新增一个场景都需要人工开发 Skill，而 Code Agent 可自主编程解决</li>
+        </ul>
+        <p style="font-size:14px; margin-top:12px; color:var(--ink);">
+            <strong>一句话</strong>：方案 B 解决了"统一"问题，但没有解决"能力"问题。方案 C 既统一又最强。
+        </p>
+    </div>
+
+    <!-- 推荐方案详解 -->
+    <div class="card" style="border-color: var(--emerald); border-width: 2px;">
+        <div class="card-title" style="color: var(--emerald);">
+            <span class="card-icon emerald">⭐</span>
+            推荐方案：研发线统一建设（方案 C）
+        </div>
+        <p>以 Code Agent 为核心，万擎平台为底座，构建三层架构。</p>
+    </div>
 
     <!-- 架构图 -->
     <div class="card">
