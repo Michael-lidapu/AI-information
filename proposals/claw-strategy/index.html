@@ -509,22 +509,23 @@
 
 <script>
 function go(id) {
-    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+    // hide all chapters
+    document.querySelectorAll('.chapter').forEach(ch => ch.style.display = 'none');
+    // show selected
+    document.getElementById(id).style.display = 'block';
+    // update nav
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+    // scroll to top of content
+    window.scrollTo({ top: document.querySelector('.sticky-nav').offsetTop - 20, behavior: 'smooth' });
 }
 
-// highlight nav on scroll
-const chapters = document.querySelectorAll('.chapter');
-const btns = document.querySelectorAll('.nav-btn');
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (e.isIntersecting) {
-            const idx = [...chapters].indexOf(e.target);
-            btns.forEach(b => b.classList.remove('active'));
-            if (btns[idx]) btns[idx].classList.add('active');
-        }
+// init: show only ch1
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('.chapter').forEach((ch, i) => {
+        ch.style.display = i === 0 ? 'block' : 'none';
     });
-}, { rootMargin: '-30% 0px -60% 0px' });
-chapters.forEach(ch => observer.observe(ch));
+});
 </script>
 
 </body>
