@@ -21,6 +21,7 @@
 <!-- ==================== NAV ==================== -->
 <nav class="sticky-nav">
     <div class="nav-inner">
+        <button class="nav-btn" onclick="go('ch0')">一张图看清</button>
         <button class="nav-btn active" onclick="go('ch1')">发生了什么</button>
         <button class="nav-btn" onclick="go('ch2')">问题在哪</button>
         <button class="nav-btn" onclick="go('ch3')">谁来做</button>
@@ -28,6 +29,257 @@
         <button class="nav-btn" onclick="go('ch5')">结论</button>
     </div>
 </nav>
+
+<!-- ==================== CH 0: 一张图看清 ==================== -->
+<section class="chapter" id="ch0">
+<div id="overview-page">
+
+<!-- Header -->
+<div class="ov-header">
+    <h1 class="ov-h1">全员养虾时代，我们怎么接</h1>
+    <div class="ov-conclusion-badge">📌 结论：统一建设，研发线主导，Code Agent 为核心，万擎平台为底座</div>
+</div>
+
+<!-- 1. 现状 -->
+<div class="ov-sec-title">
+    <div class="ov-sec-num green">1</div>
+    <div class="ov-sec-label">现状：4个团队各自建设，资源分散</div>
+</div>
+<div class="ov-stat-row">
+    <div class="ov-stat-card">
+        <div class="ov-stat-num amber">4+</div>
+        <div class="ov-stat-unit">团队各自建设</div>
+    </div>
+    <div class="ov-stat-card">
+        <div class="ov-stat-num rose">114亿</div>
+        <div class="ov-stat-unit">日 Token 消耗</div>
+    </div>
+    <div class="ov-stat-card">
+        <div class="ov-stat-num rose">~2.5万</div>
+        <div class="ov-stat-unit">元/日成本</div>
+    </div>
+    <div class="ov-stat-card">
+        <div class="ov-stat-num blue">1.5万+</div>
+        <div class="ov-stat-unit">用户群人数</div>
+    </div>
+</div>
+
+<!-- 2. 三大隐患 -->
+<div class="ov-sec-title">
+    <div class="ov-sec-num red">2</div>
+    <div class="ov-sec-label">分散建设的三大隐患</div>
+</div>
+<div class="ov-risk-row">
+    <div class="ov-risk-box">
+        <div class="ov-risk-head">🔒 安全失控</div>
+        <ul>
+            <li>各团队安全标准不一</li>
+            <li>Skill 审核机制缺失</li>
+            <li>数据泄露难以追溯</li>
+        </ul>
+    </div>
+    <div class="ov-risk-box">
+        <div class="ov-risk-head">🔑 权限割裂</div>
+        <ul>
+            <li>AI 无法继承用户权限</li>
+            <li>内部系统各自对接</li>
+            <li>"四处圈地"体验差</li>
+        </ul>
+    </div>
+    <div class="ov-risk-box">
+        <div class="ov-risk-head">💰 费用失控</div>
+        <ul>
+            <li>Token 消耗无法统一核算</li>
+            <li>固定模型，无法降本</li>
+            <li>分散采购，议价力弱</li>
+        </ul>
+    </div>
+</div>
+
+<!-- 3. 方案对比 -->
+<div class="ov-sec-title">
+    <div class="ov-sec-num blue">3</div>
+    <div class="ov-sec-label">三种方案对比</div>
+</div>
+<div class="ov-analogy-bar">
+    <span class="ov-analogy-emoji">💡</span>
+    <span>方案A = 各部门用自己的 Excel 记账 · 方案B = 选某个模板统一用 · <strong>方案C = 上专业 ERP 系统</strong></span>
+</div>
+<table class="ov-cmp-table">
+    <thead>
+        <tr>
+            <th>对比维度</th>
+            <th class="col-a">❌ 方案A：维持现状</th>
+            <th class="col-b">⚠️ 方案B：选一个产品统一</th>
+            <th class="col-c">✅ 方案C：研发线统一建设 <span class="ov-badge-rec">推荐</span></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>安全保障</td>
+            <td class="col-a"><span class="ov-tag r">各自把控</span></td>
+            <td class="col-b"><span class="ov-tag a">取决于产品</span></td>
+            <td class="col-c"><span class="ov-tag g">万擎统一保障</span></td>
+        </tr>
+        <tr>
+            <td>成本优化</td>
+            <td class="col-a"><span class="ov-tag r">无法优化</span></td>
+            <td class="col-b"><span class="ov-tag a">有限优化</span></td>
+            <td class="col-c"><span class="ov-tag g">智能路由降本</span></td>
+        </tr>
+        <tr>
+            <td>Agent 能力</td>
+            <td class="col-a">参差不齐</td>
+            <td class="col-b">受限于天花板</td>
+            <td class="col-c" style="font-weight:700;">Code Agent 无上限</td>
+        </tr>
+        <tr>
+            <td>扩展性</td>
+            <td class="col-a">各自为政</td>
+            <td class="col-b">依赖人工开发</td>
+            <td class="col-c"><span class="ov-tag g">编程扩展一切</span></td>
+        </tr>
+        <tr>
+            <td>Skill 生态</td>
+            <td class="col-a">碎片化</td>
+            <td class="col-b">单一平台</td>
+            <td class="col-c"><span class="ov-tag g">三层生态</span></td>
+        </tr>
+        <tr>
+            <td>长期风险</td>
+            <td class="col-a"><span class="ov-tag r">不可控</span></td>
+            <td class="col-b"><span class="ov-tag a">能力受限</span></td>
+            <td class="col-c"><span class="ov-tag g">体系最完整</span></td>
+        </tr>
+    </tbody>
+</table>
+
+<!-- 4. 架构 + 优势 -->
+<div class="ov-sec-title">
+    <div class="ov-sec-num purple">4</div>
+    <div class="ov-sec-label">推荐方案：三层架构 + 五大优势</div>
+</div>
+<div class="ov-bottom-row">
+    <!-- 左列：架构 + Skill生态 -->
+    <div class="ov-arch-col">
+        <div class="ov-arch-card">
+            <div class="ov-arch-layer" style="background:var(--blue-50);">
+                <div class="ov-arch-icon i1">1</div>
+                <div>
+                    <div class="ov-arch-title">入口层：云端 + 端侧</div>
+                    <div class="ov-arch-desc">Kim 侧边栏 · CodeFlicker · 消息号</div>
+                </div>
+            </div>
+            <div class="ov-arch-layer" style="background:var(--emerald-50);">
+                <div class="ov-arch-icon i2">2</div>
+                <div>
+                    <div class="ov-arch-title">核心层：Code Agent 运行时</div>
+                    <div class="ov-arch-desc">代码生成/理解/修复 · 统一 Skill 市场</div>
+                </div>
+            </div>
+            <div class="ov-arch-layer" style="background:var(--violet-50);">
+                <div class="ov-arch-icon i3">3</div>
+                <div>
+                    <div class="ov-arch-title">基础层：万擎平台（MAAS）</div>
+                    <div class="ov-arch-desc">模型调用 · 智能路由 · 安全保障</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill 生态 -->
+        <div class="ov-skill-card">
+            <div style="font-size:14px; font-weight:700; color:var(--ink); margin-bottom:8px;">🏪 三层 Skill & 知识生态</div>
+            <div style="font-size:12px; color:var(--ink-3); margin-bottom:10px;">Agent = 操作系统，Skill = AI 时代的 App</div>
+            <div class="ov-skill-layer">
+                <div class="ov-skill-dot s1"></div>
+                <div>
+                    <div class="ov-skill-name">公司级（默认生效）</div>
+                    <div class="ov-skill-desc">评测驱动，人人用上最优方案</div>
+                </div>
+            </div>
+            <div class="ov-skill-layer">
+                <div class="ov-skill-dot s2"></div>
+                <div>
+                    <div class="ov-skill-name">业务级（合作共建）</div>
+                    <div class="ov-skill-desc">研发线与业务线共建专属 Skill</div>
+                </div>
+            </div>
+            <div class="ov-skill-layer">
+                <div class="ov-skill-dot s3"></div>
+                <div>
+                    <div class="ov-skill-name">个人级（开放生态）</div>
+                    <div class="ov-skill-desc">每个人都可以建自己的 Skill</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 右列：五大优势 -->
+    <div class="ov-adv-col">
+        <div class="ov-adv-card">
+            <div class="ov-adv-icon gi">⚙️</div>
+            <div>
+                <div class="ov-adv-title">万擎平台（MAAS）</div>
+                <div class="ov-adv-desc">底层模型调用、算力资源、安全保障，一站式基础设施支撑</div>
+            </div>
+        </div>
+        <div class="ov-adv-card">
+            <div class="ov-adv-icon gc">🧠</div>
+            <div>
+                <div class="ov-adv-title">Code Agent 最强能力</div>
+                <div class="ov-adv-desc">能力无上限，缺什么写代码补。普通Agent=计算器，Code Agent=会编程的人</div>
+            </div>
+        </div>
+        <div class="ov-adv-card">
+            <div class="ov-adv-icon gb">📊</div>
+            <div>
+                <div class="ov-adv-title">智能路由降成本</div>
+                <div class="ov-adv-desc">按任务复杂度选模型：复杂→旗舰模型，简单→轻量模型，持续优化</div>
+            </div>
+        </div>
+        <div class="ov-adv-card">
+            <div class="ov-adv-icon ga">🏪</div>
+            <div>
+                <div class="ov-adv-title">三层 Skill 生态</div>
+                <div class="ov-adv-desc">公司级默认最优 + 业务级合作共建 + 个人级开放生态，评测驱动持续进化</div>
+            </div>
+        </div>
+        <div class="ov-adv-card">
+            <div class="ov-adv-icon gc">🔒</div>
+            <div>
+                <div class="ov-adv-title">安全保障最可靠</div>
+                <div class="ov-adv-desc">统一安全基线 + 租户级数据隔离 + Skill 审核 + 审计追溯，一处管控全局</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 决策矩阵 -->
+<div class="ov-decision-bar">
+    <div class="ov-decision-item">
+        <div class="ov-decision-q">是否统一建设？</div>
+        <div class="ov-decision-a">✅ 是</div>
+        <div class="ov-decision-r">安全/成本/体验不可控</div>
+    </div>
+    <div class="ov-decision-item">
+        <div class="ov-decision-q">谁来主导？</div>
+        <div class="ov-decision-a">研发线</div>
+        <div class="ov-decision-r">万擎 + Code Agent 全栈</div>
+    </div>
+    <div class="ov-decision-item">
+        <div class="ov-decision-q">产品形态？</div>
+        <div class="ov-decision-a">云端 + 端侧</div>
+        <div class="ov-decision-r">Kim 侧边栏 + CodeFlicker</div>
+    </div>
+    <div class="ov-decision-item">
+        <div class="ov-decision-q">核心架构？</div>
+        <div class="ov-decision-a">Code Agent</div>
+        <div class="ov-decision-r">能力无上限，编程扩展一切</div>
+    </div>
+</div>
+
+</div><!-- #overview-page -->
+</section>
 
 <!-- ==================== CH 1: 发生了什么 ==================== -->
 <section class="chapter" id="ch1">
