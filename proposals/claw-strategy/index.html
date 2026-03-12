@@ -1,1047 +1,440 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>全员养虾时代：统一建设方案</title>
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23059669'/><path d='M8 16l6-8 6 8 4-4v10H8V16z' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/></svg>">
-    <style>
-        :root {
-            --color-success: #059669;
-            --color-success-light: #10B981;
-            --color-danger: #E11D48;
-            --color-warning: #D97706;
-            --color-info: #2563EB;
-            --color-purple: #7C3AED;
-            --color-text-primary: #1C1917;
-            --color-text-secondary: #57534E;
-            --color-text-muted: #78716C;
-            --color-border: #E7E5E4;
-            --color-border-light: #F5F5F4;
-            --color-bg: #F8FAFB;
-            --color-bg-card: #FFFFFF;
-            --gradient-hero: linear-gradient(135deg, #059669 0%, #2563EB 50%, #7C3AED 100%);
-            --shadow-card: 0 2px 8px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
-            --shadow-hover: 0 6px 16px rgba(5,150,105,0.15), 0 2px 6px rgba(5,150,105,0.1);
-            --radius-md: 12px;
-            --radius-lg: 16px;
-            --radius-xl: 20px;
-        }
-
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-
-        body {
-            font-family: -apple-system, "SF Pro Display", "PingFang SC", sans-serif;
-            font-size: 15px;
-            line-height: 1.7;
-            color: var(--color-text-secondary);
-            background: var(--color-bg);
-            background-image: 
-                radial-gradient(at 20% 20%, rgba(5,150,105,0.08) 0%, transparent 50%),
-                radial-gradient(at 80% 80%, rgba(37,99,235,0.06) 0%, transparent 50%);
-            background-attachment: fixed;
-        }
-
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        /* Header */
-        .header {
-            text-align: center;
-            padding: 48px 0 32px;
-            position: relative;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 4px;
-            background: var(--gradient-hero);
-        }
-
-        .header-title {
-            font-size: 32px;
-            font-weight: 800;
-            background: var(--gradient-hero);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 12px;
-        }
-
-        .header-subtitle {
-            font-size: 16px;
-            color: var(--color-text-muted);
-        }
-
-        /* Tab Nav */
-        .tab-nav {
-            display: flex;
-            gap: 4px;
-            background: rgba(255,255,255,0.85);
-            backdrop-filter: blur(20px) saturate(1.8);
-            border: 1px solid rgba(255,255,255,0.7);
-            border-radius: var(--radius-lg);
-            padding: 5px;
-            position: sticky;
-            top: 12px;
-            z-index: 100;
-            margin-bottom: 24px;
-            box-shadow: var(--shadow-card);
-        }
-
-        .tab-btn {
-            flex: 1;
-            padding: 10px 16px;
-            border: none;
-            background: transparent;
-            border-radius: var(--radius-md);
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--color-text-secondary);
-            transition: all 200ms;
-        }
-
-        .tab-btn:hover {
-            background: rgba(5,150,105,0.08);
-        }
-
-        .tab-btn.active {
-            background: linear-gradient(135deg, #059669 0%, #10B981 100%);
-            color: #fff;
-            box-shadow: 0 4px 14px rgba(5,150,105,0.15);
-        }
-
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-
-        /* Section */
-        .section {
-            background: var(--color-bg-card);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            padding: 28px;
-            margin-bottom: 20px;
-            box-shadow: var(--shadow-card);
-        }
-
-        .section-header {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin-bottom: 20px;
-        }
-
-        .section-number {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #059669 0%, #10B981 100%);
-            color: #fff;
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 16px;
-            font-weight: 700;
-        }
-
-        .section-title {
-            font-size: 20px;
-            font-weight: 700;
-            color: var(--color-text-primary);
-        }
-
-        /* Conclusion Box */
-        .conclusion-box {
-            background: linear-gradient(135deg, #ECFDF5 0%, #EFF6FF 100%);
-            border: 2px solid var(--color-success);
-            border-radius: var(--radius-lg);
-            padding: 24px;
-            margin-bottom: 24px;
-        }
-
-        .conclusion-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            background: var(--color-success);
-            color: #fff;
-            padding: 4px 12px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .conclusion-text {
-            font-size: 18px;
-            font-weight: 600;
-            color: var(--color-text-primary);
-            line-height: 1.6;
-        }
-
-        /* Analogy Box */
-        .analogy-box {
-            background: rgba(217, 119, 6, 0.08);
-            border-left: 4px solid var(--color-warning);
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            padding: 16px 20px;
-            margin: 16px 0;
-        }
-
-        .analogy-label {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: var(--color-warning);
-            font-size: 12px;
-            font-weight: 600;
-            margin-bottom: 8px;
-        }
-
-        .analogy-text {
-            color: var(--color-text-primary);
-            font-size: 15px;
-        }
-
-        /* Stats Grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 12px;
-            margin: 20px 0;
-        }
-
-        .stat-card {
-            background: var(--color-bg-card);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-md);
-            padding: 16px;
-            text-align: center;
-            transition: all 200ms;
-        }
-
-        .stat-card:hover {
-            box-shadow: var(--shadow-hover);
-            transform: translateY(-2px);
-        }
-
-        .stat-value {
-            font-size: 24px;
-            font-weight: 700;
-        }
-
-        .stat-value.green { color: var(--color-success); }
-        .stat-value.red { color: var(--color-danger); }
-        .stat-value.orange { color: var(--color-warning); }
-
-        .stat-label {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            margin-top: 4px;
-        }
-
-        /* Compare Table */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 16px 0;
-        }
-
-        th, td {
-            padding: 12px 14px;
-            text-align: left;
-            border-bottom: 1px solid var(--color-border-light);
-            font-size: 14px;
-        }
-
-        th {
-            background: #FAFAF9;
-            font-weight: 600;
-            color: var(--color-text-primary);
-        }
-
-        .highlight-col {
-            background: rgba(5, 150, 105, 0.06) !important;
-        }
-
-        /* Tags */
-        .tag {
-            display: inline-flex;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: 500;
-        }
-
-        .tag-green { background: rgba(5, 150, 105, 0.12); color: #059669; }
-        .tag-red { background: rgba(225, 29, 72, 0.12); color: #E11D48; }
-        .tag-orange { background: rgba(217, 119, 6, 0.12); color: #D97706; }
-
-        /* Risk Card */
-        .risk-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 20px;
-            background: rgba(225, 29, 72, 0.04);
-            border: 1px solid rgba(225, 29, 72, 0.2);
-            border-radius: var(--radius-lg);
-            margin: 16px 0;
-        }
-
-        .risk-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--color-danger);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .risk-title {
-            font-weight: 600;
-            color: var(--color-danger);
-            margin-bottom: 4px;
-        }
-
-        /* Solution Card */
-        .solution-card {
-            display: flex;
-            align-items: flex-start;
-            gap: 16px;
-            padding: 20px;
-            background: rgba(5, 150, 105, 0.04);
-            border: 1px solid rgba(5, 150, 105, 0.2);
-            border-radius: var(--radius-lg);
-            margin: 16px 0;
-        }
-
-        .solution-icon {
-            width: 44px;
-            height: 44px;
-            background: var(--color-success);
-            border-radius: var(--radius-md);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #fff;
-            font-size: 20px;
-            flex-shrink: 0;
-        }
-
-        .solution-title {
-            font-weight: 600;
-            color: var(--color-success);
-            margin-bottom: 4px;
-        }
-
-        /* Two Column */
-        .two-col {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-            margin: 20px 0;
-        }
-
-        .col-box {
-            padding: 20px;
-            border-radius: var(--radius-lg);
-        }
-
-        .col-box.danger {
-            background: rgba(225, 29, 72, 0.06);
-            border: 1px solid rgba(225, 29, 72, 0.15);
-        }
-
-        .col-box.success {
-            background: rgba(5, 150, 105, 0.06);
-            border: 1px solid rgba(5, 150, 105, 0.15);
-        }
-
-        .col-box-title {
-            font-weight: 700;
-            font-size: 16px;
-            margin-bottom: 12px;
-        }
-
-        .col-box-title.red { color: var(--color-danger); }
-        .col-box-title.green { color: var(--color-success); }
-
-        .col-box ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .col-box li {
-            padding: 6px 0;
-            padding-left: 20px;
-            position: relative;
-            font-size: 14px;
-        }
-
-        .col-box li::before {
-            content: '';
-            position: absolute;
-            left: 0;
-            top: 12px;
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-        }
-
-        .col-box.danger li::before { background: var(--color-danger); }
-        .col-box.success li::before { background: var(--color-success); }
-
-        /* Pyramid */
-        .pyramid {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 8px;
-            margin: 24px 0;
-        }
-
-        .pyramid-level {
-            padding: 14px 24px;
-            border-radius: var(--radius-md);
-            text-align: center;
-            font-weight: 600;
-            color: #fff;
-            transition: transform 200ms;
-        }
-
-        .pyramid-level:hover {
-            transform: scale(1.02);
-        }
-
-        .pyramid-level-1 { 
-            background: linear-gradient(135deg, #059669 0%, #10B981 100%); 
-            width: 280px;
-            box-shadow: 0 4px 14px rgba(5,150,105,0.25);
-        }
-        .pyramid-level-2 { background: var(--color-info); width: 380px; }
-        .pyramid-level-3 { background: var(--color-purple); width: 480px; }
-        .pyramid-level-4 { background: #78716C; width: 580px; }
-
-        .pyramid-arrow {
-            color: var(--color-text-muted);
-            font-size: 20px;
-        }
-
-        .pyramid-label {
-            font-size: 12px;
-            color: var(--color-text-muted);
-            margin-top: -4px;
-        }
-
-        /* Architecture Diagram */
-        .arch-diagram {
-            background: linear-gradient(180deg, #F8FAFB 0%, #FFFFFF 100%);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-xl);
-            padding: 28px;
-            margin: 20px 0;
-        }
-
-        .arch-layer {
-            padding: 16px 20px;
-            border-radius: var(--radius-lg);
-            margin-bottom: 12px;
-            text-align: center;
-        }
-
-        .arch-layer-title {
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .arch-layer-desc {
-            font-size: 13px;
-            opacity: 0.9;
-        }
-
-        .arch-layer-top {
-            background: linear-gradient(135deg, #EFF6FF 0%, #F5F3FF 100%);
-            border: 1px solid rgba(37, 99, 235, 0.2);
-            color: var(--color-info);
-        }
-
-        .arch-layer-mid {
-            background: linear-gradient(135deg, #ECFDF5 0%, #D1FAE5 100%);
-            border: 2px solid var(--color-success);
-            color: var(--color-success);
-        }
-
-        .arch-layer-bottom {
-            background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
-            border: 1px solid rgba(124, 58, 237, 0.2);
-            color: var(--color-purple);
-        }
-
-        .arch-arrow {
-            text-align: center;
-            color: var(--color-text-muted);
-            font-size: 24px;
-            margin: 8px 0;
-        }
-
-        /* Quote */
-        .quote {
-            background: #FAFAF9;
-            border-left: 4px solid var(--color-info);
-            border-radius: 0 var(--radius-md) var(--radius-md) 0;
-            padding: 16px 20px;
-            margin: 16px 0;
-            font-style: italic;
-            color: var(--color-text-secondary);
-        }
-
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 32px 0;
-            color: var(--color-text-muted);
-            font-size: 13px;
-        }
-
-        /* Decision Matrix */
-        .decision-matrix {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-            margin: 20px 0;
-        }
-
-        .decision-item {
-            background: var(--color-bg-card);
-            border: 1px solid var(--color-border);
-            border-radius: var(--radius-lg);
-            padding: 20px;
-            transition: all 200ms;
-        }
-
-        .decision-item:hover {
-            box-shadow: var(--shadow-hover);
-            border-color: var(--color-success);
-        }
-
-        .decision-question {
-            font-size: 13px;
-            color: var(--color-text-muted);
-            margin-bottom: 6px;
-        }
-
-        .decision-answer {
-            font-size: 18px;
-            font-weight: 700;
-            color: var(--color-success);
-            margin-bottom: 8px;
-        }
-
-        .decision-reason {
-            font-size: 13px;
-            color: var(--color-text-secondary);
-        }
-
-        @media (max-width: 768px) {
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .two-col { grid-template-columns: 1fr; }
-            .decision-matrix { grid-template-columns: 1fr; }
-            .tab-btn { padding: 8px 12px; font-size: 13px; }
-            .pyramid-level-1 { width: 200px; }
-            .pyramid-level-2 { width: 260px; }
-            .pyramid-level-3 { width: 320px; }
-            .pyramid-level-4 { width: 100%; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>全员养虾时代，我们怎么接</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%23059669'/><text x='16' y='23' text-anchor='middle' font-size='20'>🦞</text></svg>">
+<link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <!-- Header -->
-        <header class="header">
-            <h1 class="header-title">全员养虾时代：统一建设方案</h1>
-            <p class="header-subtitle">为什么分散建设有风险，以及研发线如何解决这些问题</p>
-        </header>
 
-        <!-- Tab Navigation -->
-        <nav class="tab-nav">
-            <button class="tab-btn active" onclick="showTab('conclusion')">核心结论</button>
-            <button class="tab-btn" onclick="showTab('problem')">现状问题</button>
-            <button class="tab-btn" onclick="showTab('why-rd')">为什么是研发线</button>
-            <button class="tab-btn" onclick="showTab('risks')">隐患与解决</button>
-        </nav>
+<div class="wrap">
 
-        <!-- Tab 1: 核心结论 -->
-        <div id="conclusion" class="tab-content active">
-            <div class="conclusion-box">
-                <div class="conclusion-label">📌 核心结论</div>
-                <p class="conclusion-text">
-                    应该统一建设，由研发线主导。<br>
-                    理由：研发线拥有万擎平台（模型+安全）和Code Agent（最强能力），能够解决分散建设带来的安全、权限、费用三大隐患。
-                </p>
-            </div>
+<!-- ==================== HERO ==================== -->
+<header class="hero">
+    <div class="hero-badge">📋 内部决策参考</div>
+    <h1>全员养虾时代，我们怎么接</h1>
+    <p class="hero-sub">分散建设小龙虾（Claw）正在带来安全、成本和体验的三重风险。<br>本文论证：为什么应该统一建设，以及为什么由研发线主导最合适。</p>
+</header>
 
-            <div class="analogy-box">
-                <div class="analogy-label">💡 类比理解</div>
-                <p class="analogy-text">
-                    <strong>小龙虾 ≈ 外卖平台</strong><br>
-                    现在的情况就像公司内部有4个团队各自在做外卖APP——美团、饿了么、达达、闪送各做一套。<br>
-                    用户困惑（用哪个？）、资源浪费（重复建设）、安全隐患（各自管理用户数据）。<br>
-                    <strong>解决方案</strong>：统一做一个，由最有能力的团队主导。
-                </p>
-            </div>
+<!-- ==================== NAV ==================== -->
+<nav class="sticky-nav">
+    <div class="nav-inner">
+        <button class="nav-btn active" onclick="go('ch1')">发生了什么</button>
+        <button class="nav-btn" onclick="go('ch2')">问题在哪</button>
+        <button class="nav-btn" onclick="go('ch3')">谁来做</button>
+        <button class="nav-btn" onclick="go('ch4')">怎么做</button>
+        <button class="nav-btn" onclick="go('ch5')">结论</button>
+    </div>
+</nav>
 
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">✓</div>
-                    <h2 class="section-title">四个核心决策</h2>
-                </div>
-                
-                <div class="decision-matrix">
-                    <div class="decision-item">
-                        <div class="decision-question">是否统一建设？</div>
-                        <div class="decision-answer">✅ 是</div>
-                        <div class="decision-reason">避免重复投入、安全可控、生态统一、成本可优化</div>
-                    </div>
-                    <div class="decision-item">
-                        <div class="decision-question">谁来主导？</div>
-                        <div class="decision-answer">研发线</div>
-                        <div class="decision-reason">拥有万擎平台 + Code Agent + 模型管理的全栈能力</div>
-                    </div>
-                    <div class="decision-item">
-                        <div class="decision-question">产品形态？</div>
-                        <div class="decision-answer">云端 + 端侧</div>
-                        <div class="decision-reason">云端覆盖广（Kim侧边栏），端侧能力强（CodeFlicker）</div>
-                    </div>
-                    <div class="decision-item">
-                        <div class="decision-question">核心架构？</div>
-                        <div class="decision-answer">Code Agent为中心</div>
-                        <div class="decision-reason">能力无上限，可编程扩展任何场景</div>
-                    </div>
-                </div>
-            </div>
+<!-- ==================== CH 1: 发生了什么 ==================== -->
+<section class="chapter" id="ch1">
+    <div class="chapter-label amber">CHAPTER 01</div>
+    <h2>发生了什么？</h2>
+    <p class="chapter-lead">春节前后，公司内出现了一波"养虾"热潮。多个团队各自搭建了自己的 Claw（小龙虾）平台，用户数和 Token 消耗都在快速增长。</p>
+
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-num amber">4+</div>
+            <div class="stat-unit">个团队</div>
+            <div class="stat-desc">各自建设 Claw 平台</div>
         </div>
-
-        <!-- Tab 2: 现状问题 -->
-        <div id="problem" class="tab-content">
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">1</div>
-                    <h2 class="section-title">现状：4个团队各自建设</h2>
-                </div>
-
-                <div class="stats-grid">
-                    <div class="stat-card">
-                        <div class="stat-value orange">4+</div>
-                        <div class="stat-label">团队在建设</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value red">2.5万</div>
-                        <div class="stat-label">单日Token成本</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value orange">114亿</div>
-                        <div class="stat-label">日Token消耗</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-value red">?</div>
-                        <div class="stat-label">统一ROI</div>
-                    </div>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>产品</th>
-                            <th>建设方</th>
-                            <th>日Token消耗</th>
-                            <th>Skill市场</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>MarioClaw</td>
-                            <td>效率工程部</td>
-                            <td>约48亿</td>
-                            <td><span class="tag tag-green">有</span></td>
-                        </tr>
-                        <tr>
-                            <td>LangBridge Claw</td>
-                            <td>电商平台生态</td>
-                            <td>约41亿</td>
-                            <td><span class="tag tag-green">有(500+)</span></td>
-                        </tr>
-                        <tr>
-                            <td>Klaw</td>
-                            <td>用户增长AI</td>
-                            <td>约23亿</td>
-                            <td><span class="tag tag-red">无</span></td>
-                        </tr>
-                        <tr>
-                            <td>KwaiClaw</td>
-                            <td>生活服务</td>
-                            <td>约1.8亿</td>
-                            <td><span class="tag tag-red">无</span></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="analogy-box">
-                    <div class="analogy-label">💡 类比理解</div>
-                    <p class="analogy-text">
-                        <strong>就像4个部门各自采购打印机</strong><br>
-                        每个部门买一台打印机、各自维护、各自买耗材、各自管理打印权限。<br>
-                        看起来"灵活"，实际上：采购成本高、维护分散、安全难管控、无法统一调度。
-                    </p>
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h2 class="section-title">分散建设的五大问题</h2>
-                </div>
-
-                <div class="two-col">
-                    <div class="col-box danger">
-                        <div class="col-box-title red">❌ 分散建设的问题</div>
-                        <ul>
-                            <li><strong>重复投入</strong>：4个团队各自投入人力建设基础设施</li>
-                            <li><strong>安全风险</strong>：各自把控数据安全，标准不一，难以审计</li>
-                            <li><strong>体验割裂</strong>：用户需要在多个工具间切换</li>
-                            <li><strong>生态碎片</strong>：Skill无法跨平台复用，重复造轮子</li>
-                            <li><strong>成本失控</strong>：无法统一优化模型调用成本</li>
-                        </ul>
-                    </div>
-                    <div class="col-box success">
-                        <div class="col-box-title green">✅ 统一建设的收益</div>
-                        <ul>
-                            <li><strong>资源集中</strong>：人力聚焦，算力复用</li>
-                            <li><strong>安全可控</strong>：统一安全基线，Skill审核机制</li>
-                            <li><strong>体验统一</strong>：一个入口，降低学习成本</li>
-                            <li><strong>生态共享</strong>：统一Skill市场，能力复用</li>
-                            <li><strong>成本可优化</strong>：智能模型路由，按任务选模型</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+        <div class="stat">
+            <div class="stat-num rose">114亿</div>
+            <div class="stat-unit">Token/日</div>
+            <div class="stat-desc">合计日消耗（快速增长）</div>
         </div>
-
-        <!-- Tab 3: 为什么是研发线 -->
-        <div id="why-rd" class="tab-content">
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">1</div>
-                    <h2 class="section-title">研发线的四大优势</h2>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>优势</th>
-                            <th>说明</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>万擎平台（MAAS）</strong></td>
-                            <td>底层模型调用、算力资源、环境支撑、<strong>安全保障</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>Code Agent</strong></td>
-                            <td>能力天花板最高的Agent，可编程扩展任何能力</td>
-                        </tr>
-                        <tr>
-                            <td><strong>模型管理</strong></td>
-                            <td>按任务智能路由，在效果达标前提下<strong>持续优化成本</strong></td>
-                        </tr>
-                        <tr>
-                            <td><strong>系统集成</strong></td>
-                            <td>天然接触全公司研发工具，有协调推动能力</td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="analogy-box">
-                    <div class="analogy-label">💡 类比理解</div>
-                    <p class="analogy-text">
-                        <strong>研发线 ≈ 公司的"基建部门"</strong><br>
-                        就像盖楼需要专业的基建公司来打地基、做水电煤，而不是让每个业务部门自己挖地基。<br>
-                        <strong>万擎平台</strong>是"水电煤"，<strong>Code Agent</strong>是"最强施工队"。
-                    </p>
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">2</div>
-                    <h2 class="section-title">为什么Code Agent是最强的？</h2>
-                </div>
-
-                <div class="pyramid">
-                    <div class="pyramid-level pyramid-level-1">🏆 Code Agent（CodeFlicker）</div>
-                    <div class="pyramid-label">能写代码 = 能力无上限</div>
-                    <div class="pyramid-arrow">↑ 可以通过编程扩展一切</div>
-                    <div class="pyramid-level pyramid-level-2">数据分析 Agent</div>
-                    <div class="pyramid-level pyramid-level-3">文档处理 Agent / 系统集成 Agent</div>
-                    <div class="pyramid-level pyramid-level-4">对话 Agent（只能聊天，能力固定）</div>
-                </div>
-
-                <div class="analogy-box">
-                    <div class="analogy-label">💡 类比理解</div>
-                    <p class="analogy-text">
-                        <strong>Code Agent ≈ 会编程的全能选手</strong><br>
-                        普通Agent像是"只会用计算器的人"，能做的事情是固定的。<br>
-                        Code Agent像是"会写程序的人"，遇到计算器做不了的事，可以自己写程序解决。<br>
-                        <strong>关键区别</strong>：普通Agent的能力是"有限集合"，Code Agent的能力是"无限集合"。
-                    </p>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>对比维度</th>
-                            <th class="highlight-col">Code Agent</th>
-                            <th>普通Agent</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>能力上限</td>
-                            <td class="highlight-col"><strong>无上限</strong>（能写代码解决任何问题）</td>
-                            <td>固定（仅限预置Skill）</td>
-                        </tr>
-                        <tr>
-                            <td>扩展方式</td>
-                            <td class="highlight-col"><strong>自主编程扩展</strong></td>
-                            <td>需人工开发Skill</td>
-                        </tr>
-                        <tr>
-                            <td>场景覆盖</td>
-                            <td class="highlight-col"><strong>全场景</strong></td>
-                            <td>受限于已有Skill</td>
-                        </tr>
-                        <tr>
-                            <td>自我进化</td>
-                            <td class="highlight-col"><strong>可编写代码改进自己</strong></td>
-                            <td>无法自我迭代</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">3</div>
-                    <h2 class="section-title">统一架构：三层能力体系</h2>
-                </div>
-
-                <div class="arch-diagram">
-                    <div class="arch-layer arch-layer-top">
-                        <div class="arch-layer-title">📱 入口层：云端 + 端侧</div>
-                        <div class="arch-layer-desc">Kim侧边栏（日常办公） + CodeFlicker（研发场景）</div>
-                    </div>
-                    <div class="arch-arrow">↓</div>
-                    <div class="arch-layer arch-layer-mid">
-                        <div class="arch-layer-title">🧠 核心层：Code Agent</div>
-                        <div class="arch-layer-desc">代码生成/理解/修复 + Skill市场 + 能力扩展（缺什么写代码补）</div>
-                    </div>
-                    <div class="arch-arrow">↓</div>
-                    <div class="arch-layer arch-layer-bottom">
-                        <div class="arch-layer-title">⚙️ 基础层：万擎平台（MAAS）</div>
-                        <div class="arch-layer-desc">模型调用 + 智能路由 + 成本优化 + 安全保障</div>
-                    </div>
-                </div>
-
-                <div class="analogy-box">
-                    <div class="analogy-label">💡 类比理解</div>
-                    <p class="analogy-text">
-                        <strong>这个架构 ≈ 智能手机</strong><br>
-                        <strong>入口层</strong> = 手机屏幕和APP（用户看到的界面）<br>
-                        <strong>核心层</strong> = 手机的CPU和操作系统（决定能做什么）<br>
-                        <strong>基础层</strong> = 手机的芯片和基带（保证安全和效率）<br>
-                        研发线做的是"芯片+系统"，其他团队做的只是"APP"。
-                    </p>
-                </div>
-            </div>
+        <div class="stat">
+            <div class="stat-num rose">~2.5万</div>
+            <div class="stat-unit">元/日</div>
+            <div class="stat-desc">Token 成本</div>
         </div>
-
-        <!-- Tab 4: 隐患与解决 -->
-        <div id="risks" class="tab-content">
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">!</div>
-                    <h2 class="section-title">当前小龙虾的三大隐患</h2>
-                </div>
-
-                <div class="risk-card">
-                    <div class="risk-icon">🔒</div>
-                    <div>
-                        <div class="risk-title">安全隐患</div>
-                        <p>数据安全边界不清、敏感数据可能泄露、各团队标准不一、难以审计追溯</p>
-                        <div class="quote" style="margin-top: 12px; font-size: 13px;">
-                            员工原声："将业务数据用AI做处理分析，符合数据安全规定么？这个信息规范从哪里来，现在靠口口相传"
-                        </div>
-                    </div>
-                </div>
-
-                <div class="risk-card">
-                    <div class="risk-icon">🔑</div>
-                    <div>
-                        <div class="risk-title">权限隐患</div>
-                        <p>AI无法继承用户权限、无法访问C4文档、内部系统对接不好、四处圈地</p>
-                        <div class="quote" style="margin-top: 12px; font-size: 13px;">
-                            员工原声："内部工具多算是一个困扰，希望集中力量各个平台都打通，现在是四处圈地的逻辑"
-                        </div>
-                    </div>
-                </div>
-
-                <div class="risk-card">
-                    <div class="risk-icon">💰</div>
-                    <div>
-                        <div class="risk-title">费用隐患</div>
-                        <p>Token消耗失控、无法统一评估ROI、各团队各自采购模型、无法统一优化成本</p>
-                        <div class="quote" style="margin-top: 12px; font-size: 13px;">
-                            数据：4个Claw产品单日token成本约2.5万元，年化成本不菲，且快速增长中
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">✓</div>
-                    <h2 class="section-title">研发线如何解决这些问题？</h2>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">🔒</div>
-                    <div>
-                        <div class="solution-title">安全问题 → 万擎平台统一保障</div>
-                        <ul style="margin-top: 8px; padding-left: 20px; font-size: 14px;">
-                            <li><strong>统一安全基线</strong>：制定公司级Agent安全规范，明确数据使用边界</li>
-                            <li><strong>数据隔离</strong>：万擎平台提供租户级数据隔离，敏感数据不出域</li>
-                            <li><strong>Skill审核</strong>：统一Skill市场，上架前强制安全审核</li>
-                            <li><strong>审计追溯</strong>：统一日志记录，异常行为检测，安全事件可追溯</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">🔑</div>
-                    <div>
-                        <div class="solution-title">权限问题 → 统一身份与系统集成</div>
-                        <ul style="margin-top: 8px; padding-left: 20px; font-size: 14px;">
-                            <li><strong>身份继承</strong>：对接公司统一身份认证，Agent代理用户身份执行操作</li>
-                            <li><strong>系统集成</strong>：研发线协调推动内部系统开放API，统一对接层</li>
-                            <li><strong>企业知识库</strong>：建设数据表定义、口径说明，解决"不了解公司数据表"问题</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="solution-card">
-                    <div class="solution-icon">💰</div>
-                    <div>
-                        <div class="solution-title">费用问题 → 智能路由与成本优化</div>
-                        <ul style="margin-top: 8px; padding-left: 20px; font-size: 14px;">
-                            <li><strong>统一核算</strong>：所有Token消耗经过万擎平台，按团队/场景统计</li>
-                            <li><strong>智能路由</strong>：复杂任务用强模型，简单任务用轻量模型，自动选择</li>
-                            <li><strong>配额管理</strong>：按团队分配Token配额，超额预警，防止成本失控</li>
-                            <li><strong>集中采购</strong>：统一采购外部模型，议价能力更强</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="analogy-box">
-                    <div class="analogy-label">💡 类比理解</div>
-                    <p class="analogy-text">
-                        <strong>智能路由 ≈ 滴滴打车的派单系统</strong><br>
-                        不是所有行程都派专车——短途派快车（便宜），长途或重要场合派专车（贵但好）。<br>
-                        同理，不是所有AI任务都用最贵的模型——简单问答用轻量模型，复杂推理才用强模型。<br>
-                        <strong>这需要统一的调度系统</strong>，分散建设做不到。
-                    </p>
-                </div>
-            </div>
-
-            <div class="section">
-                <div class="section-header">
-                    <div class="section-number">✓</div>
-                    <h2 class="section-title">为什么只有研发线能解决？</h2>
-                </div>
-
-                <table>
-                    <thead>
-                        <tr>
-                            <th>问题</th>
-                            <th>分散建设</th>
-                            <th class="highlight-col">研发线统一建设</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>安全标准</td>
-                            <td>各自制定，标准不一</td>
-                            <td class="highlight-col"><strong>统一基线，一处管控</strong></td>
-                        </tr>
-                        <tr>
-                            <td>系统对接</td>
-                            <td>各自对接，重复工作</td>
-                            <td class="highlight-col"><strong>一次对接，全局复用</strong></td>
-                        </tr>
-                        <tr>
-                            <td>成本优化</td>
-                            <td>固定模型，无法优化</td>
-                            <td class="highlight-col"><strong>智能路由，持续降本</strong></td>
-                        </tr>
-                        <tr>
-                            <td>审计追溯</td>
-                            <td>分散日志，难以追溯</td>
-                            <td class="highlight-col"><strong>统一日志，全链可查</strong></td>
-                        </tr>
-                    </tbody>
-                </table>
-
-                <div class="conclusion-box" style="margin-top: 24px;">
-                    <div class="conclusion-label">📌 核心逻辑</div>
-                    <p class="conclusion-text">
-                        安全、权限、费用这三个问题，本质上都是<strong>"需要统一管控"</strong>的问题。<br>
-                        分散建设无法解决，只有统一建设才能从根本上解决。<br>
-                        而研发线拥有万擎平台（基础设施）和系统协调能力，是最适合的主导者。
-                    </p>
-                </div>
-            </div>
+        <div class="stat">
+            <div class="stat-num blue">1.5万+</div>
+            <div class="stat-unit">群人数</div>
+            <div class="stat-desc">各产品用户群合计</div>
         </div>
-
-        <footer class="footer">
-            研发线 · 研发效能中心 · 2026年3月
-        </footer>
     </div>
 
-    <script>
-        function showTab(tabId) {
-            // Hide all tabs
-            document.querySelectorAll('.tab-content').forEach(tab => {
-                tab.classList.remove('active');
-            });
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            // Show selected tab
-            document.getElementById(tabId).classList.add('active');
-            event.target.classList.add('active');
+    <div class="card">
+        <div class="card-title">公司内已有的 Claw 产品</div>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                    <tr><th>产品</th><th>建设方</th><th>部署方式</th><th>日 Token</th><th>Skill 市场</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>MarioClaw</td><td>效率工程部</td><td>云端</td><td>~48亿</td><td><span class="tag tag-g">有</span></td></tr>
+                    <tr><td>LangBridge</td><td>电商平台生态</td><td>云端</td><td>~41亿</td><td><span class="tag tag-g">有(500+)</span></td></tr>
+                    <tr><td>Klaw</td><td>用户增长AI</td><td>本地</td><td>~23亿</td><td><span class="tag tag-r">无</span></td></tr>
+                    <tr><td>KwaiClaw</td><td>生活服务</td><td>云端</td><td>~1.8亿</td><td><span class="tag tag-r">无</span></td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-head">💡 打个比方</div>
+        <p>就像公司里<strong>4个部门各自开发了一套OA系统</strong>——界面不同、数据不通、账号不互认。员工困惑"到底该用哪个"，IT 部门也无法统一管理安全和费用。</p>
+    </div>
+</section>
+
+<!-- ==================== CH 2: 问题在哪 ==================== -->
+<section class="chapter" id="ch2">
+    <div class="chapter-label rose">CHAPTER 02</div>
+    <h2>分散建设，问题在哪？</h2>
+    <p class="chapter-lead">分散建设不是"百花齐放"，而是"各自为战"。它正在带来三个层面的风险。</p>
+
+    <!-- 安全 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="card-icon rose">🔒</span>
+            风险一：安全失控
+        </div>
+        <p>各团队自行把控数据安全，没有统一标准。一旦某个产品出现数据泄露，影响的是整个公司的信誉。</p>
+        <div class="voice">"将业务数据用 AI 做处理分析，符合数据安全规定么？这个信息规范从哪里来，现在靠口口相传。"—— 员工反馈</div>
+        <p style="font-size:14px; color:var(--ink-3);">各产品的安全标准不一、审计能力不同、Skill 审核机制缺失或宽松。敏感数据的边界全凭各团队"自觉"，无法统一追溯。</p>
+    </div>
+
+    <!-- 权限 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="card-icon amber">🔑</span>
+            风险二：权限割裂
+        </div>
+        <p>AI 无法继承用户的已有权限，内部系统对接各做各的，导致重复建设且体验差。</p>
+        <div class="voice">"内部工具多算是一个困扰，希望集中力量各个平台都打通，现在是四处圈地的逻辑。"—— 员工反馈</div>
+        <p style="font-size:14px; color:var(--ink-3);">AI 读不了 C4 文档、看不了数据看板、找不到准确的数据表口径。各产品各自对接内部系统，进度和质量参差不齐。</p>
+    </div>
+
+    <!-- 费用 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="card-icon blue">💰</span>
+            风险三：费用失控
+        </div>
+        <p>多个产品各自消耗 Token，无法统一核算 ROI，也无法通过模型路由来优化成本。</p>
+        <p style="font-size:14px; color:var(--ink-3);">4 个产品单日 Token 成本约 2.5 万元且快速增长。每个产品固定使用 1-2 个模型，无法根据任务复杂度选择性价比更高的模型。</p>
+    </div>
+
+    <div class="two-col">
+        <div class="col-box bad">
+            <div class="col-head red">❌ 继续分散建设的后果</div>
+            <ul>
+                <li>安全事件无法追溯（哪个 Claw 泄露了数据？）</li>
+                <li>用户在多个工具间反复切换</li>
+                <li>优秀 Skill 无法跨产品复用</li>
+                <li>Token 成本持续膨胀，无人负责</li>
+                <li>各团队疲于维护基础设施，无力创新</li>
+            </ul>
+        </div>
+        <div class="col-box good">
+            <div class="col-head green">✅ 统一建设的收益</div>
+            <ul>
+                <li>统一安全基线，Skill 审核一道关</li>
+                <li>一个入口，降低用户学习成本</li>
+                <li>Skill 市场共享，避免重复造轮子</li>
+                <li>智能模型路由，在保效果的前提下降本</li>
+                <li>团队专注场景创新，不再重复建基础设施</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-head">💡 打个比方</div>
+        <p>就像<strong>城市的自来水系统</strong>：如果每个小区自己打井、自己净水、自己检测水质——不仅成本高，水质也无法保证，出了问题也追查不到。<br><strong>统一建设</strong>就是修一套自来水管网：水源统一、水质统一检测、成本统一核算。</p>
+    </div>
+</section>
+
+<!-- ==================== CH 3: 谁来做 ==================== -->
+<section class="chapter" id="ch3">
+    <div class="chapter-label emerald">CHAPTER 03</div>
+    <h2>为什么应该由研发线主导？</h2>
+    <p class="chapter-lead">研发线同时拥有"底层基础设施"和"最强 Agent 能力"两张牌，是唯一能从下到上贯通的团队。</p>
+
+    <!-- 万擎 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="card-icon violet">⚙️</span>
+            优势一：万擎平台（MAAS）—— 水电煤
+        </div>
+        <p>万擎平台是公司的模型服务基础设施，提供：</p>
+        <ul style="padding-left:20px; margin-top:8px; font-size:14px;">
+            <li><strong>统一模型调用</strong>：接入万擎、Claude 等多种模型</li>
+            <li><strong>算力资源</strong>：推理节点、GPU 调度</li>
+            <li><strong>安全保障</strong>：租户级数据隔离、访问控制、审计日志</li>
+            <li><strong>成本优化</strong>：按任务智能路由到最合适的模型</li>
+        </ul>
+    </div>
+
+    <!-- Code Agent -->
+    <div class="card">
+        <div class="card-title">
+            <span class="card-icon emerald">🧠</span>
+            优势二：Code Agent（CodeFlicker）—— 最强大脑
+        </div>
+        <p>Code Agent 是能力天花板最高的 Agent 类型。它不仅能执行已有的任务，还能<strong>通过编程创造新的能力</strong>。</p>
+        
+        <div class="pyramid">
+            <div class="pyr-row pyr-1">🏆 Code Agent</div>
+            <div class="pyr-note">能写代码 = 能力无上限</div>
+            <div class="pyr-row pyr-2">数据分析 / 文档处理 / 系统集成</div>
+            <div class="pyr-note">通过编程扩展出来的能力</div>
+            <div class="pyr-row pyr-3">Skill 插件能力</div>
+            <div class="pyr-note">需要人工开发和上架</div>
+            <div class="pyr-row pyr-4">对话 Agent（仅能聊天）</div>
+        </div>
+
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>对比维度</th><th class="hl">Code Agent</th><th>普通 Agent</th></tr></thead>
+                <tbody>
+                    <tr><td>能力上限</td><td class="hl">无上限（能写代码解决任何问题）</td><td>固定（仅限预置 Skill）</td></tr>
+                    <tr><td>扩展方式</td><td class="hl">自主编程，无需人工开发</td><td>需人工开发 Skill 再上架</td></tr>
+                    <tr><td>覆盖场景</td><td class="hl">全场景</td><td>受限于已有 Skill</td></tr>
+                    <tr><td>自我进化</td><td class="hl">可以编写代码改进自己</td><td>无法自我迭代</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-head">💡 打个比方</div>
+        <p>普通 Agent 像一个<strong>只会用计算器的会计</strong>——计算器上有什么功能就能做什么。<br>Code Agent 像一个<strong>会写 Excel 公式的会计</strong>——遇到计算器做不了的事，自己写公式解决。再复杂的需求，也能通过"编程"来搞定。<br><strong>这是根本区别</strong>：普通 Agent 的能力是有限集合，Code Agent 的能力是无限集合。</p>
+    </div>
+
+    <!-- 成本 -->
+    <div class="card">
+        <div class="card-title">
+            <span class="card-icon blue">📊</span>
+            优势三：模型管理 —— 智能"派单"降成本
+        </div>
+        <p>研发线管理模型，可以根据<strong>任务复杂度</strong>智能路由到不同成本的模型：</p>
+        <div class="table-wrap" style="margin-top:12px;">
+            <table>
+                <thead><tr><th>任务类型</th><th>匹配模型</th><th>成本</th><th>示例</th></tr></thead>
+                <tbody>
+                    <tr><td>复杂推理</td><td>Claude / 万擎大杯</td><td><span class="tag tag-r">$$$</span></td><td>架构设计、复杂代码</td></tr>
+                    <tr><td>常规分析</td><td>万擎中杯</td><td><span class="tag tag-a">$$</span></td><td>SQL 生成、文档摘要</td></tr>
+                    <tr><td>简单对话</td><td>万擎小杯</td><td><span class="tag tag-g">$</span></td><td>日常问答、格式转换</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-head">💡 打个比方</div>
+        <p>就像<strong>滴滴打车的派单系统</strong>：短途派快车（便宜快捷），长途或商务场合派专车（贵但体验好）。<br>AI 任务也一样——日常问答用轻量模型，复杂推理才用旗舰模型。<br>这需要一个<strong>统一的调度中枢</strong>，分散建设做不到。</p>
+    </div>
+
+    <!-- 对比表 -->
+    <div class="card">
+        <div class="card-title">综合能力对比</div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th>能力</th><th class="hl">研发线</th><th>其他团队</th></tr></thead>
+                <tbody>
+                    <tr><td>底层模型调用</td><td class="hl">✅ 万擎平台（MAAS）</td><td>❌ 需依赖或自建</td></tr>
+                    <tr><td>成本优化</td><td class="hl">✅ 智能路由，持续降本</td><td>❌ 固定模型，无法优化</td></tr>
+                    <tr><td>安全保障</td><td class="hl">✅ 统一基线 + 数据隔离</td><td>❌ 各自把控，标准不一</td></tr>
+                    <tr><td>Agent 能力</td><td class="hl">✅ Code Agent（最强）</td><td>❌ 对话 Agent（受限）</td></tr>
+                    <tr><td>扩展性</td><td class="hl">✅ 编程扩展，无上限</td><td>❌ 依赖 Skill 人工开发</td></tr>
+                    <tr><td>工具链集成</td><td class="hl">✅ 天然接触全公司工具</td><td>⭐ 部分集成</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CH 4: 怎么做 ==================== -->
+<section class="chapter" id="ch4">
+    <div class="chapter-label blue">CHAPTER 04</div>
+    <h2>具体怎么做？</h2>
+    <p class="chapter-lead">以 Code Agent 为核心，万擎平台为底座，构建三层架构，同时逐一解决安全、权限、费用三大隐患。</p>
+
+    <!-- 架构图 -->
+    <div class="card">
+        <div class="card-title">统一架构：三层能力体系</div>
+        <div class="arch">
+            <div class="arch-layer" style="background: var(--blue-50);">
+                <div class="arch-num a1">1</div>
+                <div class="arch-body">
+                    <h4>入口层：云端 + 端侧</h4>
+                    <p>Kim 侧边栏覆盖日常办公 · CodeFlicker 覆盖研发场景 · 消息号满足移动端需求</p>
+                </div>
+            </div>
+            <div class="arch-layer" style="background: var(--emerald-50);">
+                <div class="arch-num a2">2</div>
+                <div class="arch-body">
+                    <h4>核心层：Code Agent 运行时</h4>
+                    <p>代码生成/理解/修复 · 统一 Skill 市场 · 缺什么能力就写代码补</p>
+                </div>
+            </div>
+            <div class="arch-layer" style="background: var(--violet-50);">
+                <div class="arch-num a3">3</div>
+                <div class="arch-body">
+                    <h4>基础层：万擎平台（MAAS）</h4>
+                    <p>模型调用 · 智能路由 · 成本优化 · 数据隔离 · 审计日志</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-head">💡 打个比方</div>
+        <p>这个架构就像一部<strong>智能手机</strong>：<br>
+        <strong>入口层</strong> = 屏幕和 APP（用户看到和操作的界面）<br>
+        <strong>核心层</strong> = CPU 和操作系统（决定手机能做什么）<br>
+        <strong>基础层</strong> = 芯片和基带（保障安全和效率）<br>
+        研发线做的是"芯片 + 操作系统"，这是其他团队做不了的。</p>
+    </div>
+
+    <!-- 解决方案 -->
+    <div class="card">
+        <div class="card-title">三大隐患的解决方案</div>
+
+        <!-- 安全 -->
+        <div class="rs-pair">
+            <div class="rs-box risk">
+                <div class="rs-head red">🔒 安全隐患</div>
+                <ul>
+                    <li>各团队安全标准不一</li>
+                    <li>Skill 审核机制缺失</li>
+                    <li>数据泄露难以追溯</li>
+                    <li>"规范靠口口相传"</li>
+                </ul>
+            </div>
+            <div class="rs-box fix">
+                <div class="rs-head green">✅ 研发线方案</div>
+                <ul>
+                    <li>万擎平台提供租户级数据隔离</li>
+                    <li>统一 Skill 审核，上架前安全检查</li>
+                    <li>统一日志 + 异常检测 + 事件追溯</li>
+                    <li>输出公司级 Agent 安全规范</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 权限 -->
+        <div class="rs-pair">
+            <div class="rs-box risk">
+                <div class="rs-head red">🔑 权限隐患</div>
+                <ul>
+                    <li>AI 无法继承用户权限</li>
+                    <li>内部系统各自对接</li>
+                    <li>数据表口径不统一</li>
+                    <li>"四处圈地"体验割裂</li>
+                </ul>
+            </div>
+            <div class="rs-box fix">
+                <div class="rs-head green">✅ 研发线方案</div>
+                <ul>
+                    <li>对接统一身份认证，继承用户权限</li>
+                    <li>统一 API 对接层，一次建设全局复用</li>
+                    <li>建设企业知识库，标准化数据定义</li>
+                    <li>一个入口统一体验</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 费用 -->
+        <div class="rs-pair">
+            <div class="rs-box risk">
+                <div class="rs-head red">💰 费用隐患</div>
+                <ul>
+                    <li>Token 消耗分散，无法统一核算</li>
+                    <li>各团队固定模型，无法优化</li>
+                    <li>分散采购，议价能力弱</li>
+                    <li>成本快速增长，无人负责</li>
+                </ul>
+            </div>
+            <div class="rs-box fix">
+                <div class="rs-head green">✅ 研发线方案</div>
+                <ul>
+                    <li>统一核算，按团队/场景清晰归因</li>
+                    <li>智能路由，按任务复杂度选模型</li>
+                    <li>配额管理 + 超额预警</li>
+                    <li>集中采购，规模议价</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="analogy">
+        <div class="analogy-head">💡 核心逻辑</div>
+        <p>安全、权限、费用这三个问题，本质上都是<strong>"需要统一管控"</strong>的问题。<br>分散建设永远无法解决——就像每个小区自己打井永远无法保证水质。<br>只有统一建设一套"自来水管网"，才能从根本上解决。</p>
+    </div>
+</section>
+
+<!-- ==================== CH 5: 结论 ==================== -->
+<section class="chapter" id="ch5">
+    <div class="chapter-label emerald">CHAPTER 05</div>
+    <h2>结论与建议</h2>
+    <p class="chapter-lead">四个核心决策，一句话总结。</p>
+
+    <div class="conclusion">
+        <div class="conclusion-badge">📌 核心结论</div>
+        <p>应该统一建设，由研发线主导。<br>依托万擎平台保障安全和成本，以 Code Agent 为核心提供最强能力。<br>这是<strong>能力最强、成本最优、安全最可控</strong>的方案。</p>
+    </div>
+
+    <div class="card">
+        <div class="card-title">四个核心决策</div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th style="width:25%;">决策问题</th><th style="width:20%;">结论</th><th>核心理由</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>是否统一建设？</strong></td><td class="hl">✅ 是</td><td>分散建设导致安全、权限、费用三重风险不可控</td></tr>
+                    <tr><td><strong>谁来主导？</strong></td><td class="hl">研发线</td><td>同时拥有万擎平台（基础设施）和 Code Agent（最强能力）</td></tr>
+                    <tr><td><strong>产品形态？</strong></td><td class="hl">云端 + 端侧</td><td>云端（Kim 侧边栏）覆盖广，端侧（CodeFlicker）能力强</td></tr>
+                    <tr><td><strong>核心架构？</strong></td><td class="hl">Code Agent 为中心</td><td>能力无上限，缺什么写代码补，其他 Agent 做不到</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">研发线主导的四大优势</div>
+        <div class="table-wrap">
+            <table>
+                <thead><tr><th style="width:30%;">优势</th><th>说明</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>底层能力最全</strong></td><td>万擎平台（MAAS）提供模型调用、算力、环境、安全的一站式支撑</td></tr>
+                    <tr><td><strong>核心能力最强</strong></td><td>Code Agent 是能力天花板最高的 Agent，可通过编程扩展任何场景</td></tr>
+                    <tr><td><strong>成本优化最有效</strong></td><td>研发线管理模型，可按任务智能路由，在保效果前提下持续降本</td></tr>
+                    <tr><td><strong>安全保障最可靠</strong></td><td>统一安全基线 + 数据隔离 + 审计追溯，不是各团队自行把控</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+</div><!-- .wrap -->
+
+<footer class="foot">
+    研发线 · 研发效能中心 · 2026 年 3 月
+</footer>
+
+<script>
+function go(id) {
+    document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// highlight nav on scroll
+const chapters = document.querySelectorAll('.chapter');
+const btns = document.querySelectorAll('.nav-btn');
+const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+        if (e.isIntersecting) {
+            const idx = [...chapters].indexOf(e.target);
+            btns.forEach(b => b.classList.remove('active'));
+            if (btns[idx]) btns[idx].classList.add('active');
         }
-    </script>
+    });
+}, { rootMargin: '-30% 0px -60% 0px' });
+chapters.forEach(ch => observer.observe(ch));
+</script>
+
 </body>
 </html>
