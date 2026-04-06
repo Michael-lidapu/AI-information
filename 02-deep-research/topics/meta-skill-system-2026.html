@@ -260,6 +260,32 @@
         .ml-impl{color:var(--c-green);}
         .map-text{font-size:13px;color:var(--c-text);line-height:1.6;font-weight:500;}
         .map-detail{font-size:12px;color:var(--c-text-3);margin-top:4px;line-height:1.5;}
+
+        /* ─── Mobile Patches ─── */
+        @media(max-width:600px){
+            .hero{padding:32px 22px;}
+            .hero h1{font-size:24px;}
+            .hero-lead{font-size:14px;}
+            .hero-meta{gap:12px;font-size:12px;}
+            .map-row{display:flex;flex-direction:column;gap:8px;}
+            .map-arrow{transform:rotate(90deg);text-align:center;}
+            .layer{padding:16px 16px;}
+            .layer-name{font-size:15px;}
+            .layer-desc{font-size:12px;}
+            .eng-lbl{width:60px;font-size:9px;}
+            .ecell{min-width:100px;}
+            .fw-grid{grid-template-columns:1fr;}
+            .cmp-grid{grid-template-columns:1fr;}
+            .stats-grid{grid-template-columns:repeat(2,1fr);}
+            .sec{padding:18px 16px;}
+            .tab-btn{padding:7px 12px;font-size:12px;}
+        }
+        @media(max-width:400px){
+            .container{padding:16px 10px 60px;}
+            .stats-grid{grid-template-columns:1fr 1fr;}
+            .stat-val{font-size:18px;}
+            .eng-cells{flex-direction:column;}
+        }
     </style>
 </head>
 <body>
@@ -269,7 +295,8 @@
          Tab Nav
     ═══════════════════════════════════════════ -->
     <nav class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('law')">自然规律</button>
+        <button class="tab-btn active" onclick="switchTab('overview')">概览</button>
+        <button class="tab-btn" onclick="switchTab('law')">自然规律</button>
         <button class="tab-btn" onclick="switchTab('mapping')">规律映射</button>
         <button class="tab-btn" onclick="switchTab('engine')">引擎架构</button>
         <button class="tab-btn" onclick="switchTab('completeness')">完备性验证</button>
@@ -316,10 +343,127 @@
         </div>
     </div>
 
+
+    <!-- ═══════════════════════════════════════════
+         TAB 0: 概览（快速导读）
+    ═══════════════════════════════════════════ -->
+    <div id="tab-overview" class="tab-panel active">
+
+        <div class="sec">
+            <div class="sec-head">
+                <div class="sec-ico">🗂</div>
+                <div>
+                    <div class="sec-title">30 秒读完，知道这是什么</div>
+                    <div class="sec-sub">一份关于「如何让自己越来越厉害」的完整工程化答案</div>
+                </div>
+            </div>
+
+            <div class="callout callout-rule">
+                <div class="callout-label cl-purple">这篇文章在说什么？</div>
+                <div class="callout-text">
+                    顶级运动员和普通人的差距，不在天赋，在有没有一套<strong>让自己越练越强的系统</strong>。<br>
+                    这套系统，从人类的训练与成长规律中提炼，被工程化地实现在了 AI 能力领域。<br><br>
+                    本文先讲<strong>自然规律</strong>（所有成长系统背后的共同底层逻辑），<br>
+                    再讲<strong>工程实现</strong>（林克 AI 助手是如何把这些规律变成可运转的代码和机制的）。
+                </div>
+            </div>
+        </div>
+
+        <!-- 5个Tab导读 -->
+        <div class="sec">
+            <div class="sec-head">
+                <div class="sec-ico">📋</div>
+                <div>
+                    <div class="sec-title">5个章节，各有侧重</div>
+                    <div class="sec-sub">可以按顺序读，也可以按感兴趣跳读</div>
+                </div>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <div onclick="switchTab('law')" style="cursor:pointer;border:1px solid var(--c-border);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:all var(--tr);" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#EDE9FE,#DDD6FE);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🌱</div>
+                    <div>
+                        <div style="font-weight:700;color:var(--c-text);font-size:14px;margin-bottom:3px;">① 自然规律 &nbsp;<span style="font-weight:400;color:var(--c-text-3);font-size:12px;">建议所有人从这里开始</span></div>
+                        <div style="font-size:13px;color:var(--c-text-2);">顶级运动员 vs 普通人、「越练越强」三条件、为什么大多数人做不到</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--c-text-3);font-size:18px;">›</div>
+                </div>
+
+                <div onclick="switchTab('mapping')" style="cursor:pointer;border:1px solid var(--c-border);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:all var(--tr);" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#D1FAE5,#A7F3D0);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">🗺</div>
+                    <div>
+                        <div style="font-weight:700;color:var(--c-text);font-size:14px;margin-bottom:3px;">② 规律映射 &nbsp;<span style="font-weight:400;color:var(--c-text-3);font-size:12px;">理解「为什么这样设计」</span></div>
+                        <div style="font-size:13px;color:var(--c-text-2);">7条自然规律 → 7个工程实现，一一对应，包括「进化不依赖意志力」的核心设计</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--c-text-3);font-size:18px;">›</div>
+                </div>
+
+                <div onclick="switchTab('engine')" style="cursor:pointer;border:1px solid var(--c-border);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:all var(--tr);" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#DBEAFE,#BFDBFE);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">⚙️</div>
+                    <div>
+                        <div style="font-weight:700;color:var(--c-text);font-size:14px;margin-bottom:3px;">③ 引擎架构 &nbsp;<span style="font-weight:400;color:var(--c-text-3);font-size:12px;">适合工程师细读</span></div>
+                        <div style="font-size:13px;color:var(--c-text-2);">三层能力架构 + 六层功能模块图，每个组件的位置和职责</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--c-text-3);font-size:18px;">›</div>
+                </div>
+
+                <div onclick="switchTab('completeness')" style="cursor:pointer;border:1px solid var(--c-border);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:all var(--tr);" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#FEF3C7,#FDE68A);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">✅</div>
+                    <div>
+                        <div style="font-weight:700;color:var(--c-text);font-size:14px;margin-bottom:3px;">④ 完备性验证 &nbsp;<span style="font-weight:400;color:var(--c-text-3);font-size:12px;">看哪里还有缺口</span></div>
+                        <div style="font-size:13px;color:var(--c-text-2);">五维度 MECE 检验，已覆盖 / 弱 / 待补 三色分类</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--c-text-3);font-size:18px;">›</div>
+                </div>
+
+                <div onclick="switchTab('hidden')" style="cursor:pointer;border:1px solid var(--c-border);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:all var(--tr);" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#FFE4E6,#FECDD3);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">💡</div>
+                    <div>
+                        <div style="font-weight:700;color:var(--c-text);font-size:14px;margin-bottom:3px;">⑤ 隐藏设计 &nbsp;<span style="font-weight:400;color:var(--c-text-3);font-size:12px;">最有意思的部分</span></div>
+                        <div style="font-size:13px;color:var(--c-text-2);">5个反直觉设计决策，理解为什么这样设计而不是那样设计</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--c-text-3);font-size:18px;">›</div>
+                </div>
+
+                <div onclick="switchTab('sources')" style="cursor:pointer;border:1px solid var(--c-border);border-radius:var(--r-lg);padding:16px 20px;display:flex;align-items:center;gap:14px;transition:all var(--tr);" onmouseover="this.style.boxShadow='0 4px 12px rgba(0,0,0,0.1)';this.style.transform='translateY(-1px)'" onmouseout="this.style.boxShadow='';this.style.transform=''">
+                    <div style="width:40px;height:40px;background:linear-gradient(135deg,#F1F5F9,#E2E8F0);border-radius:var(--r-md);display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">📚</div>
+                    <div>
+                        <div style="font-weight:700;color:var(--c-text);font-size:14px;margin-bottom:3px;">⑥ 思想来源 &nbsp;<span style="font-weight:400;color:var(--c-text-3);font-size:12px;">知识溯源</span></div>
+                        <div style="font-size:13px;color:var(--c-text-2);">6大理论支撑（控制论/双环学习/系统思维…）+ 90次踩坑的独特价值</div>
+                    </div>
+                    <div style="margin-left:auto;color:var(--c-text-3);font-size:18px;">›</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 关键数字一览 -->
+        <div class="sec">
+            <div class="sec-head">
+                <div class="sec-ico">📊</div>
+                <div><div class="sec-title">一眼看懂体系规模</div></div>
+            </div>
+            <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;">
+                <div style="text-align:center;padding:20px 12px;border:1px solid var(--c-border-l);border-radius:var(--r-lg);background:linear-gradient(135deg,#F5F3FF,#fff);">
+                    <div style="font-size:32px;font-weight:800;color:var(--c-purple);line-height:1;">18</div>
+                    <div style="font-size:12px;color:var(--c-text-3);margin-top:6px;">元技能组件</div>
+                </div>
+                <div style="text-align:center;padding:20px 12px;border:1px solid var(--c-border-l);border-radius:var(--r-lg);background:linear-gradient(135deg,#ECFDF5,#fff);">
+                    <div style="font-size:32px;font-weight:800;color:var(--c-green);line-height:1;">90+</div>
+                    <div style="font-size:12px;color:var(--c-text-3);margin-top:6px;">真实踩坑沉淀</div>
+                </div>
+                <div style="text-align:center;padding:20px 12px;border:1px solid var(--c-border-l);border-radius:var(--r-lg);background:linear-gradient(135deg,#EFF6FF,#fff);">
+                    <div style="font-size:32px;font-weight:800;color:var(--c-blue);line-height:1;">5:00</div>
+                    <div style="font-size:12px;color:var(--c-text-3);margin-top:6px;">每天自动运转</div>
+                </div>
+            </div>
+        </div>
+
+    </div><!-- /tab-overview -->
+
     <!-- ═══════════════════════════════════════════
          TAB 1: 自然规律
     ═══════════════════════════════════════════ -->
-    <div id="tab-law" class="tab-panel active">
+    <div id="tab-law" class="tab-panel">
 
         <!-- Section 1.1: 核心观察 -->
         <div class="sec">
@@ -1306,6 +1450,66 @@
     </div><!-- /tab-sources -->
 
 
+
+    <!-- Easter Egg -->
+    <div class="sec" style="border:2px dashed var(--c-amber-100);background:linear-gradient(135deg,#FFFBEB,#fff);">
+        <div class="sec-head">
+            <div class="sec-ico" style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);">🥚</div>
+            <div>
+                <div class="sec-title" style="color:var(--c-amber);">Easter Egg — 这篇文章是怎么生产的</div>
+                <div class="sec-sub">每篇深度报告的最后，记录一下幕后过程</div>
+            </div>
+        </div>
+
+        <p style="font-size:14px;color:var(--c-text-2);line-height:1.8;margin-bottom:18px;">
+            这篇报告是一次「meta 实验」：<strong style="color:var(--c-text)">用元技能体系本身，来撰写关于元技能体系的报告。</strong>
+        </p>
+
+        <div style="display:flex;flex-direction:column;gap:10px;">
+
+            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
+                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">1</div>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">触发点：一个关于类比的问题</div>
+                    <div style="font-size:13px;color:var(--c-text-2);">原始版本用了「生物细胞新陈代谢」类比，沈浪说太抽象，希望换成更贴近生活的比喻。这一句话，触发了整篇报告的结构性重写。</div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
+                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">2</div>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">结构决策：先规律，后实现</div>
+                    <div style="font-size:13px;color:var(--c-text-2);">「整体表达方式和顺序希望换一下，先讲本质规律，然后再匹配到实现」——这句话是整篇报告最重要的设计决定。它让报告从「介绍一套系统」变成了「解释一条规律的工程化落地」。</div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
+                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">3</div>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">生产方式：分步输出，每次一部分</div>
+                    <div style="font-size:13px;color:var(--c-text-2);">81.3KB 的单 HTML 文件，通过 7 次 Python 脚本分段写入生成，避免了单次输出过长导致的截断风险。这本身就是「OutputTooLong 触发后立即切换分文件策略」这条记忆规则的一次应用。</div>
+                </div>
+            </div>
+
+            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
+                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">4</div>
+                <div>
+                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">类比的最终选择：人的训练和成长系统</div>
+                    <div style="font-size:13px;color:var(--c-text-2);">「运动员的训练系统，或者直接说是人的训练和成长系统」——这个类比胜出的原因是：每个人都经历过「有效成长」和「无效忙碌」的对比，不需要背景知识就能共鸣。</div>
+                </div>
+            </div>
+
+        </div>
+
+        <div style="margin-top:16px;padding:12px 16px;background:var(--c-amber-50);border-radius:var(--r-md);border:1px solid var(--c-amber-100);">
+            <div style="font-size:13px;color:var(--c-amber);font-weight:600;">PS：写这篇文章本身，也是元技能体系在工作</div>
+            <div style="font-size:13px;color:var(--c-text-2);margin-top:4px;line-height:1.7;">
+                一次对话→洞察沉淀→SKILL.md更新→页面生成→部署发布，全链路 4 小时内完成。
+                下次遇到同类分析，站在这次的肩膀上出发。这就是复利。
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <div class="pg-footer">
         <strong>元技能体系 v3.0</strong><br>
@@ -1321,7 +1525,7 @@ function switchTab(name) {
     document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
     const panels = document.querySelectorAll('.tab-panel');
     const btns = document.querySelectorAll('.tab-btn');
-    const names = ['law','mapping','engine','completeness','hidden','sources'];
+    const names = ['overview','law','mapping','engine','completeness','hidden','sources'];
     const idx = names.indexOf(name);
     if(idx >= 0){ panels[idx].classList.add('active'); btns[idx].classList.add('active'); }
 }
