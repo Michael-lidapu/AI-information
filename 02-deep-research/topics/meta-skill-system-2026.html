@@ -292,20 +292,7 @@
 <div class="container">
 
     <!-- ═══════════════════════════════════════════
-         Tab Nav
-    ═══════════════════════════════════════════ -->
-    <nav class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('overview')">概览</button>
-        <button class="tab-btn" onclick="switchTab('law')">自然规律</button>
-        <button class="tab-btn" onclick="switchTab('mapping')">规律映射</button>
-        <button class="tab-btn" onclick="switchTab('engine')">引擎架构</button>
-        <button class="tab-btn" onclick="switchTab('completeness')">完备性验证</button>
-        <button class="tab-btn" onclick="switchTab('hidden')">隐藏设计</button>
-        <button class="tab-btn" onclick="switchTab('sources')">思想来源</button>
-    </nav>
-
-    <!-- ═══════════════════════════════════════════
-         Hero
+         Hero（固定在最上方，不随 Tab 切换）
     ═══════════════════════════════════════════ -->
     <div class="hero">
         <div class="hero-eyebrow">⚡ 元技能体系 v4.0 &nbsp;·&nbsp; 2026-04-06 更新</div>
@@ -342,6 +329,19 @@
             <div><div class="stat-val">90+</div><div class="stat-lbl">踩坑规律沉淀</div></div>
         </div>
     </div>
+
+    <!-- ═══════════════════════════════════════════
+         Tab Nav（在 Hero+Stats 下方）
+    ═══════════════════════════════════════════ -->
+    <nav class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab('overview')">概览</button>
+        <button class="tab-btn" onclick="switchTab('law')">自然规律</button>
+        <button class="tab-btn" onclick="switchTab('mapping')">规律映射</button>
+        <button class="tab-btn" onclick="switchTab('engine')">引擎架构</button>
+        <button class="tab-btn" onclick="switchTab('completeness')">完备性验证</button>
+        <button class="tab-btn" onclick="switchTab('hidden')">隐藏设计</button>
+        <button class="tab-btn" onclick="switchTab('sources')">思想来源</button>
+    </nav>
 
 
     <!-- ═══════════════════════════════════════════
@@ -1511,72 +1511,6 @@
 
 
 
-    <!-- Easter Egg -->
-    <div class="sec" style="border:2px dashed var(--c-amber-100);background:linear-gradient(135deg,#FFFBEB,#fff);">
-        <div class="sec-head">
-            <div class="sec-ico" style="background:linear-gradient(135deg,#FEF3C7,#FDE68A);">🥚</div>
-            <div>
-                <div class="sec-title" style="color:var(--c-amber);">Easter Egg — 这篇文章是怎么生产的</div>
-                <div class="sec-sub">每篇深度报告的最后，记录一下幕后过程</div>
-            </div>
-        </div>
-
-        <p style="font-size:14px;color:var(--c-text-2);line-height:1.8;margin-bottom:18px;">
-            这篇报告是一次「meta 实验」：<strong style="color:var(--c-text)">用元技能体系本身，来撰写关于元技能体系的报告。</strong>
-        </p>
-
-        <div style="display:flex;flex-direction:column;gap:10px;">
-
-            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
-                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">1</div>
-                <div>
-                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">触发点：一个关于类比的问题</div>
-                    <div style="font-size:13px;color:var(--c-text-2);">原始版本用了「生物细胞新陈代谢」类比，沈浪说太抽象，希望换成更贴近生活的比喻。这一句话，触发了整篇报告的结构性重写。</div>
-                </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
-                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">2</div>
-                <div>
-                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">结构决策：先规律，后实现</div>
-                    <div style="font-size:13px;color:var(--c-text-2);">「整体表达方式和顺序希望换一下，先讲本质规律，然后再匹配到实现」——这句话是整篇报告最重要的设计决定。它让报告从「介绍一套系统」变成了「解释一条规律的工程化落地」。</div>
-                </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
-                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">3</div>
-                <div>
-                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">生产方式：分步输出，每次一部分</div>
-                    <div style="font-size:13px;color:var(--c-text-2);">81.3KB 的单 HTML 文件，通过 7 次 Python 脚本分段写入生成，避免了单次输出过长导致的截断风险。这本身就是「OutputTooLong 触发后立即切换分文件策略」这条记忆规则的一次应用。</div>
-                </div>
-            </div>
-
-            <div style="display:grid;grid-template-columns:32px 1fr;gap:12px;padding:14px 16px;border:1px solid var(--c-border-l);border-radius:var(--r-md);">
-                <div style="width:32px;height:32px;background:var(--c-amber-50);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;font-size:16px;">4</div>
-                <div>
-                    <div style="font-size:13px;font-weight:700;color:var(--c-text);margin-bottom:3px;">类比的最终选择：人的训练和成长系统</div>
-                    <div style="font-size:13px;color:var(--c-text-2);">「运动员的训练系统，或者直接说是人的训练和成长系统」——这个类比胜出的原因是：每个人都经历过「有效成长」和「无效忙碌」的对比，不需要背景知识就能共鸣。</div>
-                </div>
-            </div>
-
-        </div>
-
-        <div style="margin-top:16px;padding:12px 16px;background:var(--c-amber-50);border-radius:var(--r-md);border:1px solid var(--c-amber-100);">
-            <div style="font-size:13px;color:var(--c-amber);font-weight:600;">PS：写这篇文章本身，也是元技能体系在工作</div>
-            <div style="font-size:13px;color:var(--c-text-2);margin-top:4px;line-height:1.7;">
-                一次对话→洞察沉淀→SKILL.md更新→页面生成→部署发布，全链路 4 小时内完成。
-                下次遇到同类分析，站在这次的肩膀上出发。这就是复利。
-            </div>
-            <div style="margin-top:10px;padding:10px 14px;background:#fff;border:1px dashed var(--c-amber-100);border-radius:var(--r-sm);">
-                <div style="font-size:12px;color:var(--c-amber);font-weight:600;">v4.0 更新（2026-04-06）</div>
-                <div style="font-size:12px;color:var(--c-text-3);margin-top:3px;line-height:1.6;">
-                    补齐4个元技能缺口（boundary-sense / uncertainty-marker / context-sense / trust-builder），
-                    五维度全覆盖达成。修复感知分工冲突，加固P2触发机制，8个技能文件瘦身1185行。
-                    18→22个元技能组件。这就是体系在自我进化的证据。
-                </div>
-            </div>
-        </div>
-    </div>
 
     <!-- Footer -->
     <div class="pg-footer">
